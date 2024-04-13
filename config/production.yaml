@@ -1,0 +1,17 @@
+---
+providers:
+  config:
+    class: octodns.provider.yaml.YamlProvider
+    directory: ./
+    default_ttl: 3600
+    enforce_order: false
+  cloudflare:
+    class: octodns.provider.cloudflare.CloudflareProvider
+    token: env/CLOUDFLARE_TOKEN
+
+zones:
+  tjuav.org.:
+    sources:
+      - config
+    targets:
+      - cloudflare
