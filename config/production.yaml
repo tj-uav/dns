@@ -6,7 +6,7 @@ providers:
     default_ttl: 3600
     enforce_order: false
   cloudflare:
-    class: octodns.provider.cloudflare.CloudflareProvider
+    class: octodns_cloudflare.CloudflareProvider
     token: env/CLOUDFLARE_TOKEN
 
 zones:
