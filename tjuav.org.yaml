@@ -1,1 +1,70 @@
----
+'':
+  # GitHub Pages Configuration
+  - type: A
+    values:
+      - 185.199.108.153
+      - 185.199.109.153
+      - 185.199.110.153
+      - 185.199.111.153
+    octodns:
+      cloudflare:
+        proxied: true
+        auto-ttl: true
+
+  # Cloudflare Mail Configuration
+  - type: MX
+    values:
+      - exchange: route3.mx.cloudflare.net.
+        preference: 20
+      - exchange: route2.mx.cloudflare.net.
+        preference: 82
+      - exchange: route1.mx.cloudflare.net.
+        preference: 92
+    octodns:
+      cloudflare:
+        auto-ttl: true
+
+  - type: TXT
+    values:
+      # Mail SPF Configuration
+      - 'v=spf1 include:_spf.mx.cloudflare.net include:_spf.google.com ~all'
+      # Google Search Console Verification
+      - 'google-site-verification=kDVIO-3JicgMGQ1CrZz3C8usMiZNyZnL1OyUmtMJrCE'
+    octodns:
+      cloudflare:
+        auto-ttl: true
+
+# Mail DMARC Policy
+_dmarc:
+  - type: TXT
+    values:
+      - 'v=DMARC1\;  p=none\; rua=mailto:e5c2c2be978e4f1484a91a492f7cf093@dmarc-reports.cloudflare.net'
+    octodns:
+      cloudflare:
+        auto-ttl: true
+
+# GitHub Verification
+_github-challenge-tj-uav-org:
+  - type: TXT
+    values:
+      - d0570330b0
+    octodns:
+      cloudflare:
+        auto-ttl: true
+
+# Subdomains
+www:
+  - type: CNAME
+    value: tj-uav.github.io.
+    octodns:
+      cloudflare:
+        proxied: true
+        auto-ttl: true
+
+docs:
+  - type: CNAME
+    value: 1a120fb909-hosting.gitbook.io.
+    octodns:
+      cloudflare:
+        proxied: false
+        auto-ttl: true
